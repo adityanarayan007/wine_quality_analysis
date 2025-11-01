@@ -1,0 +1,2 @@
+Model,BestParams,CV_F1
+RandomForest,"{'max_depth': 15, 'min_samples_split': 5, 'n_estimators': 250}",0.8226976460022508
