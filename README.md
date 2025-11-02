@@ -1,44 +1,46 @@
-🍷 Wine Quality Prediction – End-to-End Machine Learning Project
-🚀 Overview
+## 🍷 Wine Quality Prediction – End-to-End Machine Learning Project
 
+# 🚀 Overview
 This project predicts the quality of red wine based on its physicochemical properties such as acidity, sugar level, pH, alcohol content, and more.
 It’s built as a complete MLOps-style pipeline, including model training, optimization, deployment with Flask, and containerization via Docker.
 
-🧩 Project Architecture
+# 🧩 Project Architecture
 The entire project archiotecture is available here.
 
-⚙️ Tech Stack
 
-Language: Python 3.10
+# 🧩 Tech Stack & Tools Used
 
-Libraries: pandas, numpy, scikit-learn, matplotlib, seaborn, joblib
+ - Language: Python 3.10
 
-Framework: Flask
+ - Libraries: pandas, numpy, scikit-learn, matplotlib, seaborn, joblib
 
-Model: Random Forest Classifier
+ - Framework: Flask (for API and web app integration)
 
-Containerization: Docker
+ - Machine Learning Model: Random Forest Classifier
 
-Deployment: Render
+ - Containerization: Docker (for creating reproducible deployment environment)
 
-🧠 Machine Learning Workflow
+ - Deployment Platform: Render (for hosting the Flask web application)
 
-Data Ingestion: Loaded and cleaned the Wine Quality dataset (UCI Machine Learning Repository).
+# 🧠 Machine Learning Workflow
 
-EDA: Identified key correlations between features and wine quality (alcohol, acidity, sulfur compounds, etc.).
+ - Data Ingestion: Loaded and cleaned the Wine Quality dataset (UCI Machine Learning Repository).
 
-Feature Engineering: Scaled numerical features and handled outliers. combined acidity columns to total acidity and sulfur columns to sulfur bound
+ - EDA: Identified key correlations between features and wine quality (alcohol, acidity, sulfur compounds, etc.).
 
-Model Selection: Tested multiple algorithms — Logistic Regression, SVM, Decision Tree, Random Forest and Gradient Boosting.
+ - Feature Engineering: Scaled numerical features and handled outliers. combined acidity columns to total acidity and sulfur columns to sulfur bound
 
-Optimization: Tuned hyperparameters using GridSearchCV.
+ - Model Selection: Tested multiple algorithms — Logistic Regression, SVM, Decision Tree, Random Forest and Gradient Boosting.
 
-Evaluation: Assessed using Accuracy, Precision, Recall, F1-score, and ROC-AUC.
+ - Optimization: Tuned hyperparameters using GridSearchCV.
 
-Deployment: Built Flask app and containerized using Docker.
+ - Evaluation: Assessed using Accuracy, Precision, Recall, F1-score, and ROC-AUC.
+
+ - Deployment: Built Flask app and containerized using Docker.
 
 Render Hosting: Deployed publicly accessible prediction web app.
-🎯 Results
+
+# 🎯 Results
 | Model               | Accuracy  | F1-Score  | Precision | Recall    |
 | ------------------- | --------- | --------- | --------- | --------- |
 | **Random Forest**   | **0.797** | **0.821** | **0.810** | **0.832** |
@@ -77,7 +79,7 @@ docker build -t wine-quality-app .
 docker run -p 5000:5000 wine-quality-app
 
 
-🧭 Understanding the Features and Their Impact on Wine Quality
+# 🧭 Understanding the Features and Their Impact on Wine Quality
 | Feature                       | Description                                                 | Typical Range | Impact on Quality                                                                |
 | ----------------------------- | ----------------------------------------------------------- | ------------- | -------------------------------------------------------------------------------- |
 | **Fixed Acidity**             | Acids that don’t evaporate easily (tartaric, malic, citric) | 4.0 – 15.0    | Moderate acidity contributes to freshness; too high makes wine sour.             |
@@ -96,13 +98,13 @@ Then open: http://localhost:5000
 
 🌐 Live Demo
 
-🚀 Try the Web App on Render
+🚀 Try the Web App on [Render](https://wine-quality-analysis-ggwk.onrender.com/)
 
-✅ Tip for Users:
+# ✅ Tip for Users:
 When using the app, enter realistic values within these ranges.
 The prediction assumes the input follows the same structure and scaling as the dataset.
 
-🧾 Future Improvements
+# 🧾 Future Improvements
 
 Integrate CI/CD with GitHub Actions
 
@@ -115,5 +117,5 @@ Enable batch predictions via CSV upload
 ✨ Author
 
 Aditya Narayan Mishra
-📧 [Your Email]
-🔗 [LinkedIn Profile] | [Portfolio Website]
+📧 [adityam1729@gmail.com]
+🔗 [LinkedIn](https://www.linkedin.com/in/aditya-narayan-mishra-9b7254188/)
