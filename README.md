@@ -5,31 +5,7 @@ This project predicts the quality of red wine based on its physicochemical prope
 It’s built as a complete MLOps-style pipeline, including model training, optimization, deployment with Flask, and containerization via Docker.
 
 🧩 Project Architecture
-Wine Quality Prediction
-│
-├── data/
-│   ├── raw/                   # Original dataset
-│   ├── processed/             # Cleaned and transformed data
-│
-├── notebooks/
-│   ├── EDA_and_Model_Comparison.ipynb  # Exploratory data analysis and initial model experiments
-│
-├── src/
-│   ├── data/                  # Data loading and preprocessing scripts
-│   ├── features/              # Feature engineering logic
-│   ├── models/                # Model training, tuning, and evaluation scripts
-│   ├── app/                   # Flask web application
-│
-├── artifacts/
-│   ├── models/                # Saved model, encoders, scalers
-│
-├── templates/                 # HTML templates for the web app
-├── static/                    # CSS / JS / Images for UI
-│
-├── Dockerfile                 # Container configuration
-├── requirements.txt           # Python dependencies
-├── README.md                  # Project documentation
-└── app.py                     # Flask app entry point
+The entire project archiotecture is available here.
 
 ⚙️ Tech Stack
 
@@ -63,12 +39,13 @@ Deployment: Built Flask app and containerized using Docker.
 
 Render Hosting: Deployed publicly accessible prediction web app.
 🎯 Results
-Model         Accuracy    F1_Score              Precision             Recall
-RandForrest   0.796875,   0.8209366391184573,   0.8097826086956522,   0.8324022346368715
-SVC           0.75,       0.7687861271676301,   0.7964071856287425,   0.7430167597765364
-LogReg        0.7375,     0.76,                 0.7777777777777778,   0.7430167597765364
-GradBoost     0.734375,   0.7578347578347578,   0.7732558139534884,   0.7430167597765364
-DecTree       0.73125,    0.7570621468926554,   0.7657142857142857,   0.7486033519553073
+| Model               | Accuracy  | F1-Score  | Precision | Recall    |
+| ------------------- | --------- | --------- | --------- | --------- |
+| **Random Forest**   | **0.797** | **0.821** | **0.810** | **0.832** |
+| SVC                 | 0.750     | 0.769     | 0.796     | 0.743     |
+| Logistic Regression | 0.738     | 0.760     | 0.778     | 0.743     |
+| Gradient Boosting   | 0.734     | 0.758     | 0.773     | 0.743     |
+| Decision Tree       | 0.731     | 0.757     | 0.766     | 0.749     |
 
 ✅ The Random Forest Classifier achieved the best performance with balanced precision and recall.
 Following parametrs were best for RandomForest which was determined from GridSearchCV : 
