@@ -1,140 +1,142 @@
-🍷 Wine Quality Prediction Service
+🍷 Wine Quality Prediction – End-to-End Machine Learning Project
+🚀 Overview
 
-1. Project Overview
+This project predicts the quality of red wine based on its physicochemical properties such as acidity, sugar level, pH, alcohol content, and more.
+It’s built as a complete MLOps-style pipeline, including model training, optimization, deployment with Flask, and containerization via Docker.
 
-This project implements an end-to-end Machine Learning solution to classify red wine samples based on their physiochemical properties. The goal is to predict whether a wine is considered "Good Quality" (score ≥ 7) or "Poor Quality" (score < 7) using a robust and deployable model.
+🧩 Project Architecture
+Wine Quality Prediction
+│
+├── data/
+│   ├── raw/                   # Original dataset
+│   ├── processed/             # Cleaned and transformed data
+│
+├── notebooks/
+│   ├── EDA_and_Model_Comparison.ipynb  # Exploratory data analysis and initial model experiments
+│
+├── src/
+│   ├── data/                  # Data loading and preprocessing scripts
+│   ├── features/              # Feature engineering logic
+│   ├── models/                # Model training, tuning, and evaluation scripts
+│   ├── app/                   # Flask web application
+│
+├── artifacts/
+│   ├── models/                # Saved model, encoders, scalers
+│
+├── templates/                 # HTML templates for the web app
+├── static/                    # CSS / JS / Images for UI
+│
+├── Dockerfile                 # Container configuration
+├── requirements.txt           # Python dependencies
+├── README.md                  # Project documentation
+└── app.py                     # Flask app entry point
 
-This is a demonstration of a complete MLOps pipeline, from training and artifact management to containerized deployment.
+⚙️ Tech Stack
 
-2. Project Goals
+Language: Python 3.10
 
-ML Performance Objectives
+Libraries: pandas, numpy, scikit-learn, matplotlib, seaborn, joblib
 
-Target Metric: Achieve a minimum of 85% F1-Score on the validation set for the "Good Quality" class (minority class).
+Framework: Flask
 
-Model Selection: Utilize a robust ensemble method (Random Forest or Gradient Boosting) for high predictive power and interpretability.
+Model: Random Forest Classifier
 
-Data Strategy: Implement Feature Engineering to derive better predictive features (e.g., pH to fixed acidity ratios) to improve model generalization.
+Containerization: Docker
 
-MLOps and Deployment Objectives
+Deployment: Render
 
-Code Quality: Maintain a modular structure with separate directories for source code (src/), API (src/api/), and services (src/services/).
+🧠 Machine Learning Workflow
 
-Containerization: Successfully package the model and prediction service into a small, production-ready Docker image using Gunicorn.
+Data Ingestion: Loaded and cleaned the Wine Quality dataset (UCI Machine Learning Repository).
 
-Scalable Deployment: Deploy the containerized service to a scalable cloud platform (Render/GCP Cloud Run) for public access and demonstration.
+EDA: Identified key correlations between features and wine quality (alcohol, acidity, sulfur compounds, etc.).
 
-3. Technology Stack
+Feature Engineering: Scaled numerical features and handled outliers. combined acidity columns to total acidity and sulfur columns to sulfur bound
 
-Category
+Model Selection: Tested multiple algorithms — Logistic Regression, SVM, Decision Tree, Random Forest and Gradient Boosting.
 
-Component
+Optimization: Tuned hyperparameters using GridSearchCV.
 
-Description
+Evaluation: Assessed using Accuracy, Precision, Recall, F1-score, and ROC-AUC.
 
-Language
+Deployment: Built Flask app and containerized using Docker.
 
-Python 3.10
+Render Hosting: Deployed publicly accessible prediction web app.
+🎯 Results
+Model         Accuracy    F1_Score              Precision             Recall
+RandForrest   0.796875,   0.8209366391184573,   0.8097826086956522,   0.8324022346368715
+SVC           0.75,       0.7687861271676301,   0.7964071856287425,   0.7430167597765364
+LogReg        0.7375,     0.76,                 0.7777777777777778,   0.7430167597765364
+GradBoost     0.734375,   0.7578347578347578,   0.7732558139534884,   0.7430167597765364
+DecTree       0.73125,    0.7570621468926554,   0.7657142857142857,   0.7486033519553073
 
-Core programming language.
+✅ The Random Forest Classifier achieved the best performance with balanced precision and recall.
+Following parametrs were best for RandomForest which was determined from GridSearchCV : 
+RandomForest,"{'max_depth': 15, 'min_samples_split': 5, 'n_estimators': 250}"
 
-ML/Data
+# 1️⃣ Clone the repository
+git clone https://github.com/adityanarayan007/wine_quality_analysis
 
-Scikit-learn, Pandas
+# 2️⃣ Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate       # On macOS/Linux
+venv\Scripts\activate          # On Windows
 
-Model training, feature engineering, and data handling.
+# 3️⃣ Install dependencies
+pip install -r requirements.txt
 
-Web Service
+# 4️⃣ Run the Flask app
+python app.py
 
-Flask, Gunicorn
+# 5️⃣ Visit the app
+Open http://127.0.0.1:5000/ in your browser
 
-Lightweight API and production-grade web server.
 
-Artifacts
 
-Joblib
+# Build the Docker image
+docker build -t wine-quality-app .
 
-Serialization and loading of the trained model (final_model.joblib).
+# Run the container
+docker run -p 5000:5000 wine-quality-app
 
-Deployment
 
-Docker
+🧭 Understanding the Features and Their Impact on Wine Quality
+| Feature                       | Description                                                 | Typical Range | Impact on Quality                                                                |
+| ----------------------------- | ----------------------------------------------------------- | ------------- | -------------------------------------------------------------------------------- |
+| **Fixed Acidity**             | Acids that don’t evaporate easily (tartaric, malic, citric) | 4.0 – 15.0    | Moderate acidity contributes to freshness; too high makes wine sour.             |
+| **Volatile Acidity**          | Acetic acid (vinegar-like)                                  | 0.1 – 1.6     | High values reduce quality; creates unpleasant smell/taste.                      |
+| **Citric Acid**               | Adds flavor and stability                                   | 0.0 – 1.0     | Higher citric acid often improves quality slightly.                              |
+| **Residual Sugar**            | Sugar left after fermentation                               | 0.9 – 15.5    | Sweetness increases drinkability but too much reduces quality.                   |
+| **Chlorides**                 | Salt content                                                | 0.01 – 0.2    | High chloride = salty taste → lower quality.                                     |
+| **Free Sulfur Dioxide (SO₂)** | Prevents microbial growth                                   | 1 – 75        | Moderate SO₂ protects wine; too high creates off-flavors.                        |
+| **Total Sulfur Dioxide**      | Sum of free and bound SO₂                                   | 6 – 300       | Very high levels indicate poor handling → lower quality.                         |
+| **Density**                   | Measure of sugar + alcohol                                  | 0.990 – 1.004 | Lower density (more alcohol, less sugar) → better quality.                       |
+| **pH**                        | Acidity level                                               | 2.8 – 4.0     | Ideal wines have balanced pH (~3.2–3.5). Too high = dull, too low = overly sour. |
+| **Sulphates**                 | Adds antioxidant property                                   | 0.3 – 1.6     | Higher sulphates usually correlate with better preservation and quality.         |
+| **Alcohol**                   | Percentage of ethanol                                       | 8.0 – 14.9    | Strong positive correlation: higher alcohol = higher perceived quality.          |
 
-Containerization for reproducible builds.
+Then open: http://localhost:5000
 
-Cloud Hosting
+🌐 Live Demo
 
-Render / Google Cloud Run
+🚀 Try the Web App on Render
 
-Serverless platform for hosting the public API.
+✅ Tip for Users:
+When using the app, enter realistic values within these ranges.
+The prediction assumes the input follows the same structure and scaling as the dataset.
 
-4. Quick Analysis: How Values Impact Wine Quality
+🧾 Future Improvements
 
-For users testing the prediction service, understanding how the input features affect the model's output is critical. The model has learned specific thresholds, but here are the general trends:
+Integrate CI/CD with GitHub Actions
 
-Feature
+Add automated model retraining pipeline
 
-Trend for Good Quality
+Improve UI with better input validation
 
-Reasoning
+Enable batch predictions via CSV upload
 
-Alcohol
+✨ Author
 
-Higher values (e.g., > 11.5)
-
-Often the strongest predictor; higher alcohol content is correlated with higher perceived quality.
-
-Volatile Acidity
-
-Lower values (e.g., < 0.40)
-
-Too much volatile acidity makes wine taste like vinegar; lower values are highly desired.
-
-Sulphates
-
-Higher values (e.g., > 0.65)
-
-Sulphates (SO2) act as a preservative. Higher levels often indicate better stability and quality control.
-
-Fixed Acidity
-
-Varies, but Mid-Range
-
-Too low is flat; too high is sour. Needs to be balanced with pH for the best result.
-
-Pro-Tip: To quickly test for a "Good Quality" result, try a combination of High Alcohol (12.0), Low Volatile Acidity (0.35), and High Sulphates (0.80), keeping other values near the average.
-
-5. MLOps / Deployment Guide
-
-The entire service is packaged in a single Docker image, making it easy to build and run locally or deploy to any cloud platform (ECS, Cloud Run, Azure Container Apps).
-
-Prerequisites
-
-Docker Desktop installed and running.
-
-The trained model artifact (final_model.joblib) must be present in the models/ directory.
-
-Local Run Commands
-
-Stop/Remove Previous Container (if necessary):
-
-docker stop wine_service
-docker rm wine_service
-
-
-Build the Docker Image:
-This command packages the source code, dependencies, and model into an image tagged wine-predictor.
-
-docker build -t wine-predictor .
-
-
-Run the Container:
-This starts the service in detached mode (-d), exposing it on your local port 5000.
-
-docker run -d -p 5000:8080 --name wine_service wine-predictor
-
-
-Access the Application:
-Open your browser to: http://localhost:5000
-
-Live Demo Available Here: [INSERT PUBLIC RENDER / GCP CLOUD RUN URL]
+Aditya Narayan Mishra
+📧 [Your Email]
+🔗 [LinkedIn Profile] | [Portfolio Website]
